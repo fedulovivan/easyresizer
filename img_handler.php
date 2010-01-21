@@ -2,7 +2,7 @@
 
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
-$image = new ImageHandler( $_SERVER['QUERY_STRING'] );
+$image = new ImageHandler( $_SERVER['REQUEST_URI'] );
 
 // Echoing image, or error to browser
 echo $image->get();
@@ -80,27 +80,27 @@ class ImageHandler {
          * Имя папки, куда складывается кэш картинок
          * (относительно $_scripts_root)
          */
-        $_store                     = 'cache',
+        $_cache                     = 'img_cache',
         /**
          * Имя папки, где хранятся исходные картинки
          * (относительно $_scripts_root)
          */
-        $_sources                   = 'sources';
+        $_sources                   = 'img';
 
     /**
      * Конструктор
-     * @param string $query_string запрос пользователя
+     * @param string $request_uri запрос пользователя
      */
-    public function  __construct( $query_string ) {
+    public function  __construct( $request_uri ) {
 
-        $this->_query_string = trim($query_string, "/");
+        $this->_query_string = trim($request_uri, "/");
         //$this->_scripts_root = realpath( dirname(__FILE__) . DS . '..' );
         $this->_scripts_root = realpath( dirname(__FILE__) );
         $parts = explode('/', $this->_query_string);
         $this->_image_filename    = array_pop($parts);
         $this->_raw_param_string  = array_pop($parts);
 
-        $cache_dir = $this->_scripts_root . DS . $this->_store;
+        $cache_dir = $this->_scripts_root . DS . $this->_cache;
         if(!is_writable( $cache_dir )) {
             if(!chmod( $cache_dir, 0755 )) {
                 $this->_valid = false;
@@ -379,7 +379,7 @@ class ImageHandler {
         }
 
         // Создаем директорию
-        $new_dir = $this->_scripts_root . DS . $this->_store . DS . $this->_raw_param_string;
+        $new_dir = $this->_scripts_root . DS . $this->_cache . DS . $this->_raw_param_string;
         if( !is_dir($new_dir) ) {
             mkdir( $new_dir );
             chmod( $new_dir, 0777 );
