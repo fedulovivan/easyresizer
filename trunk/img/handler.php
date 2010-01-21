@@ -2,13 +2,12 @@
 
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
-
 $image = new ImageHandler( $_SERVER['QUERY_STRING'] );
 
 // Echoing image, or error to browser
 echo $image->get();
 
-// Comment next line on production for security purposes
+// Comment this line on production for security purposes
 $image->print_errors();
 
 /**
@@ -81,7 +80,7 @@ class ImageHandler {
          * Имя папки, куда складывается кэш картинок
          * (относительно $_scripts_root)
          */
-        $_store                     = 'store',
+        $_store                     = 'cache',
         /**
          * Имя папки, где хранятся исходные картинки
          * (относительно $_scripts_root)
@@ -95,7 +94,8 @@ class ImageHandler {
     public function  __construct( $query_string ) {
 
         $this->_query_string = trim($query_string, "/");
-        $this->_scripts_root = realpath( dirname(__FILE__) . DS . '..' );
+        //$this->_scripts_root = realpath( dirname(__FILE__) . DS . '..' );
+        $this->_scripts_root = realpath( dirname(__FILE__) );
         $parts = explode('/', $this->_query_string);
         $this->_image_filename    = array_pop($parts);
         $this->_raw_param_string  = array_pop($parts);
