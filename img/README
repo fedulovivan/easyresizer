@@ -1,0 +1,46 @@
+Usage:
+--------------
+for ex.: we put this script to the directory "/img", relative to webroot
+
+put original image "some_image.jpeg" to "/img/sources" folder
+
+get constraned in x-axis by 100px image
+/img/100_0/some_image.jpeg
+
+constraned in both axises and crop area defined to s(start)
+/img/150_100_s/some_image.jpeg
+
+
+Params:
+----------------
+150_100_s
+^   ^   ^
+|   |   |crop-area
+|   |
+|   |y-axis constraint
+|
+|x-axis constraint
+
+[x-axis constraint] - integer value, defined in pixels, which sets
+max x size of image
+is you don`t need to restrict x sise of img, set this param to "0"(zero)
+
+[y-axis constraint] - integer value, defined in pixels, which sets
+maximum image size in y dimension.
+if you don`t need to restrict y size of img, set this param to "0"(zero)
+
+[crop-area] - when we cropping original image, there is three variants
+of areas, from where disired img will be taken:
+    [start=s]   - left part of orig. image if it has landscape orientation
+    and top part if portrait
+    [end=e]     - it`s right part if image in case of landscape orientation
+    and bottom otherwise
+    [middle=m]  - is middle in both situations
+this param is optional, and by default takes "m" value
+
+Please, note, that both "x" and "y" constraints must be specified.
+But one of them can have "0"(zero) value
+
+If you don`t use both "x" and "y", crop-area argument don`t needed too,
+because image is always fully fits.
+
