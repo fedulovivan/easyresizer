@@ -1,8 +1,7 @@
 Usage:
 --------------
-for ex.: we put this script to the directory "/img", relative to webroot
+put original image "some_image.jpeg" to "/img" folder
 
-put original image "some_image.jpeg" to "/img/sources" folder
 
 get constraned in x-axis by 100px image
 /img/100_0/some_image.jpeg

@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    # if we have correct params redirect to cache
+    RewriteCond %{REQUEST_URI} ^/img/(\d{1,4}_\d{1,4}(_[s|m|e])?)/(\w+\.[a-z]{3,4})$ [NC]
+    RewriteRule .* /img_cache/%1/%3 [L]
+
+    # cache is empty - running handler
+    RewriteCond %{REQUEST_URI} ^/img_cache/.* [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule .* /img_handler.php
+
+</IfModule>
+
+Options -Indexes
+AddDefaultCharset utf-8
