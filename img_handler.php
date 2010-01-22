@@ -331,7 +331,7 @@ class ImageHandler {
             }
         }            
 
-        if( !$this->_check_allowed_memory( $dst_width, $dst_height, $src_data['bits'] ) ){
+        if( !$this->_check_allowed_memory( $dst_width, $dst_height, $src_data['bits'] ) ) {
             $this->_404_error();
             return false;
         }
@@ -346,6 +346,8 @@ class ImageHandler {
             imagefilledrectangle($dst_resource, 0, 0, $dst_width, $dst_height, $tc);
         }
 
+        //$src_resource =  imagerotate( $src_resource, 10 );
+
         // Transparency for gif
         if( $src_data[2] == IMAGETYPE_GIF ) {
             $cnt = imagecolorstotal($src_resource);
@@ -355,7 +357,8 @@ class ImageHandler {
             imagefill($dst_resource,0,0,$tc);
             imagecolortransparent($dst_resource, $tc);
         }
-        
+
+
         if( function_exists('imagecopyresampled') ) {
             imagecopyresampled( 
                 $dst_resource, $src_resource,
@@ -373,6 +376,7 @@ class ImageHandler {
                 $src_width, $src_height
             );
         }
+
 
         // Создаем директорию
         $new_dir = $this->_scripts_root . DS . $this->_cache . DS . $this->_raw_param_string;
