@@ -3,7 +3,7 @@
     RewriteEngine On
 
     # if we have correct params redirect to cache
-    RewriteRule ^(.+)?img/(\d{1,4}_\d{1,4}(_[s|m|e])?)/(\w+\.[a-z]{3,4})$ $1img_cache/$2/$4 [NC,L]
+    RewriteRule ^(.+)?img/(\d{1,4}_\d{1,4}(_[s|m|e])?)/((\w|\.)+\.[a-z]{3,4})$ $1img_cache/$2/$5 [NC,L]
 
     # cache is empty - running handler
     RewriteCond %{REQUEST_FILENAME} !-f
