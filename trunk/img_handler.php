@@ -11,13 +11,10 @@ echo $image->get();
 $image->print_errors();
 
 /**
- * @todo Сделать проверку на количество возможных расайзов
- * одного изображения запрашиваемых с одного IP в определенный
- * интервал времени
- *
- * @todo Доработать .htaccess, чтобы он умел на уровне
- * веб сервера определять наличие файла исходной картинки, и не приходилось дергать
- * для этого этот скрипт
+ * Easyresize image handler class
+ * @version $Id$
+ * @package Easyresizer
+ * @author Fedulov Ivan <fedulov.ivan@gmail.com>
  */
 class ImageHandler {
 
