@@ -91,7 +91,6 @@ class ImageHandler {
     public function  __construct( $request_uri ) {
 
         $this->_query_string = trim($request_uri, "/");
-        //$this->_scripts_root = realpath( dirname(__FILE__) . DS . '..' );
         $this->_scripts_root = realpath( dirname(__FILE__) );
         $parts = explode('/', $this->_query_string);
         $this->_image_filename    = array_pop($parts);
@@ -407,7 +406,9 @@ class ImageHandler {
     }
 
     /**
-     *
+     * Получаение начальной координаты для кропа
+     * на основе исходного значения ширины(или высоты) и посчитанного
+     * 
      * @param integer $orig исходный размер
      * @param integer $dst результирующий размер
      * @return integer
