@@ -11,9 +11,11 @@ echo $image->get();
 $image->print_errors();
 
 /**
- * Easyresize image handler class
+ * Easyresize handler class
+ *
  * @version $Id$
  * @package Easyresizer
+ * @link http://code.google.com/p/easyresizer/ Project page on goole code
  * @author Fedulov Ivan <fedulov.ivan@gmail.com>
  */
 class ImageHandler {
