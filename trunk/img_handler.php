@@ -15,12 +15,18 @@ $image->print_errors();
  *
  * @version $Id$
  * @package Easyresizer
- * @link http://code.google.com/p/easyresizer/ Project page on goole code
+ * @link http://code.google.com/p/easyresizer/ Project page on google code
  * @author Fedulov Ivan <fedulov.ivan@gmail.com>
  */
 class ImageHandler {
 
+    /**
+     * Портретная ориентация
+     */
     const IMG_PORTRAIT  = 1;
+    /**
+     * Ландшафтная ориентация
+     */
     const IMG_LANDSCAPE = 2;
 
     private
@@ -78,11 +84,13 @@ class ImageHandler {
         /**
          * Имя папки, куда складывается кэш картинок
          * (относительно $_scripts_root)
+         * @var string
          */
         $_cache                     = 'img_cache',
         /**
          * Имя папки, где хранятся исходные картинки
          * (относительно $_scripts_root)
+         * @var string
          */
         $_sources                   = 'img';
 
@@ -132,7 +140,7 @@ class ImageHandler {
 
     /**
      * Распечатка ошибок класса, если они есть
-     * @return <type>
+     * @return void
      */
     public function print_errors() {
         if(empty ($this->_errors)) return ;
@@ -214,6 +222,7 @@ class ImageHandler {
      * 
      * @param integer $w высота картинки
      * @param integer $h ширина картинки
+     * @param integer $bits битность картинки
      * 
      * return boolean
      */
