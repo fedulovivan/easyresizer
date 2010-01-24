@@ -2,7 +2,7 @@
 
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
-$image = new ImageHandler( $_SERVER['REQUEST_URI'] );
+$image = new ImageHandler();
 
 // Echoing image, or error to browser
 echo $image->get();
@@ -88,11 +88,10 @@ class ImageHandler {
 
     /**
      * Конструктор
-     * @param string $request_uri запрос пользователя
      */
-    public function  __construct( $request_uri ) {
+    public function  __construct() {
 
-        $this->_query_string = trim($request_uri, "/");
+        $this->_query_string = trim($_SERVER['REQUEST_URI'], "/");
         $this->_scripts_root = realpath( dirname(__FILE__) );
         $parts = explode('/', $this->_query_string);
         $this->_image_filename    = array_pop($parts);
